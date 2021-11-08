@@ -1,43 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
+/*   Updated: 2021/11/08 08:10:57 by salimon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
+#include "keycodes.h"
 
-//gcc -Wall -Wextra -Werror fractol.c -lbsd -lmlx -lXext -lX11 && ./a.out
+//gcc -Wall -Wextra -Werror fractol.c key_management.c -lbsd -lmlx -lXext -lX11 && ./a.out
 
-
-typedef struct  s_data
+int	valid_arg(char **argv)
 {
-	void    *img;
-	char    *addr; //memory address on which we will mutate the bytes accordingly
-	int     bits_per_pixel;
-	int     line_length;
-	int     endian;
-}				t_data;
+	if (argv[1] == "Mandelbrot" || argv[1] == "Julia")
+		return (1);
+	else
+		return (0);
+}
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int	print_help()
+{
+	printf("Invalid parameter.\n");
+	printf("Valid parameters :\n Mandelbrot\n Julia");
+	return (0);
+}
+
+
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
-int main(void)
+
+static void	init()
 {
-    void	*mlx;
-    void	*mlx_win;
-    t_data	img;
+	t_mlx	mlx;
 
-	mlx = mlx_init(); //establish a connection to the correct graphical system and will return a void * which holds the location of our current MLX instance.
-    mlx_win = mlx_new_window(mlx, 1200, 800, "Hello world!");
-    img.img = mlx_new_image(mlx, 1200, 800); //return a pointer to the window we have just created. We can give the window height, width and a title. We then will have to call mlx_loop to initiate the window rendering.
-
+	mlx.mlx = mlx_init();
+    mlx.win = mlx_new_window(mlx.mlx, 1200, 800, "Fractol");
+    mlx.img = mlx_new_image(mlx.mlx, 1200, 800);
 	/*
 	** After creating an image, we can call `mlx_get_data_addr`, we pass
 	** `bits_per_pixel`, `line_length`, and `endian` by reference. These will
 	** then be set accordingly for the *current* data address.
 	*/
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-    my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, &mlx.line_length,
+								&mlx.endian);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
+	//mlx_hook(mlx.win, 2, 1L<<0, close_win, &mlx);
+	mlx_loop(mlx.mlx);
+}
+
+
+/*
+A parameter is passed on the command line to define what type of fractal will be
+viewed. If no parameter is provided, or if the parameter is invalid, the program
+displays a list of available parameters and exits properly.
+•More parameters must be used for fractal parameters or ignored.
+You must be able to create different Julia set with the parameters of the program.
+*/
+
+// USE IMAGE (?)
+
+int main(int argc, char **argv)
+{
+	if (argc < 2 || !(valid_arg(argv)))
+		return (print_help());
+	else
+    	init();
+    return (0);
 }
