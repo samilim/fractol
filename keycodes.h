@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 04:45:39 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 07:44:28 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/08 09:00:28 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** LINUX
 */
 # ifdef __linux__
-#  define ESC_KEY 
+#  define ESC_KEY 27
 
 #  define ZOOMIN_KEY 
 #  define ZOOMOUT_KEY

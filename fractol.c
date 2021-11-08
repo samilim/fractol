@@ -6,18 +6,18 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 08:10:57 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/08 09:24:30 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "keycodes.h"
 
-//gcc -Wall -Wextra -Werror fractol.c key_management.c -lbsd -lmlx -lXext -lX11 && ./a.out
+//gcc -Wall -Wextra -Werror -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter fractol.c key_management.c utils.c -lbsd -lmlx -lXext -lX11 && ./a.out
 
 int	valid_arg(char **argv)
 {
-	if (argv[1] == "Mandelbrot" || argv[1] == "Julia")
+	if (ft_strcmp(argv[1], "Mandelbrot") == 0 || ft_strcmp(argv[1], "Julia") == 0)
 		return (1);
 	else
 		return (0);
@@ -26,7 +26,7 @@ int	valid_arg(char **argv)
 int	print_help()
 {
 	printf("Invalid parameter.\n");
-	printf("Valid parameters :\n Mandelbrot\n Julia");
+	printf("Please use one of those parameters :\n Mandelbrot\n Julia\n");
 	return (0);
 }
 

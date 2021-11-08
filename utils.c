@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_management.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 09:21:40 by salimon          ###   ########.fr       */
+/*   Created: 2021/11/08 09:04:05 by salimon           #+#    #+#             */
+/*   Updated: 2021/11/08 09:17:33 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "keycodes.h"
 
-static void    key_actions(int key, t_mlx *mlx)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-    if (key == ESC_KEY)
-	    mlx_destroy_window(mlx->mlx, mlx->win);
-}
+	unsigned int	i;
+	unsigned char	*cs1;
+	unsigned char	*cs2;
 
-/*
-** Zoom in / out INDEFINITLY with mouse wheel
-** Bonus : zoom follows the actual mouse position
-*/
-
-void zoom(int key)
-{
-
-}
-
-/*BONUS*/
-void move(int key)
-{
-    /*move with the arrows*/
+	i = 0;
+	cs1 = (unsigned char *)s1;
+	cs2 = (unsigned char *)s2;
+	while (cs1[i] == cs2[i] && cs1[i] != '\0' && cs2[i] != '\0')
+		i++;
+	return (cs1[i] - cs2[i]);
 }

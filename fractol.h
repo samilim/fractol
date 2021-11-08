@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 08:09:26 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/08 09:17:27 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 typedef struct	s_vars
 {
-    int keycode;
+    int key;
 }				t_vars;
 
 typedef	struct s_complex_nb
@@ -48,7 +48,7 @@ typedef	struct s_fractal
 
 
 /*
-** Mlxes datas
+** Mlx datas
 ** mlx		; establish a connection to the correct graphical system and will return a void * which holds the location of our current MLX instance
 ** win 		; windows id
 ** image	; return a pointer to the window we have just created. We can give the window height, width and a title. We then will have to call mlx_loop to initiate the window rendering
@@ -69,6 +69,7 @@ typedef struct  s_mlx
 }				t_mlx;
 
 
-int	close_win(int keycode, t_mlx *mlx);
+static void		key_actions(int key, t_mlx *mlx);
+int	ft_strcmp(const char *s1, const char *s2);
 
 #endif
