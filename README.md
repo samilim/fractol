@@ -40,9 +40,31 @@ _________________________________________________________________________
 
 First we need to found the codes of the corresponding keys.
 
-### Fractals and use of complex numbers
+### Draw fractals with the use of complex numbers
 
+(FR) Comprendre les nb complexes et leur lien avec le set de Mandelbrot
 https://youtu.be/Y4ICbYtBGzA
+
+Understand the logic behind the calculation
+https://youtu.be/mBg74yR3ZiY
+https://youtu.be/6z7GQewK-Ks
+
+To obtain the magnitude of a complex number, we add the squared real part to the squared imaginary part and calculate the square root of the result.
+Ex : 4 + i2 = square root of 20
+
+Now we want to calculte (a + ib²), which is equal to (a² + bi² + 2 * a * bi).
+But remember, a complex number² = -1, so that means that (a² + bi² + 2 * a * bi) is equal to (a² + (b² * (-1)) + 2abi) which can be simplified as (a² - b² + 2abi).
+That way we have to distinct parts ; (a² - b²) which is the real part and (2abi) the imaginary part.
+(a² - b²) + (2abi) is the formula we use to calculate the square of a complex number.
+Ex : (4 + 2i)²
+= (4² - 2²) + (2*4*2i)
+= 12 + 16i
+
+If I want to add or substract complex nb, i just have to add each respective parts
+Ex : (4 + 2i) + (3 + 5i)
+= 7 + 7i
+
+### Understand the MinilibX
 
 ### Optimization
 

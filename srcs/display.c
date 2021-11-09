@@ -1,13 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_management.c                                :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 07:37:43 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 07:38:15 by salimon          ###   ########.fr       */
+/*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
+/*   Updated: 2021/11/09 06:16:04 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//You must use at least a few colors to show the depth of each fractal. It’s even better f you hack away on psychedelic effects
+#include "../includes/fractol.h"
+#include "../includes/keycodes.h"
+#include "../includes/colors.h"
+
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}

@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 09:17:27 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/09 08:18:11 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <math.h>
-# include "mlx_linux/mlx.h"
+# include "../mlx_linux/mlx.h"
+# include "../includes/keycodes.h"
+# include "../includes/colors.h"
 
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 800
-
-typedef struct	s_vars
-{
-    int key;
-}				t_vars;
 
 typedef	struct s_complex_nb
 {
 	double	real_part;
 	double	imaginary_part;
+	double	magnitude;
 	
 }				t_complex_nb;
 
@@ -41,10 +39,21 @@ typedef	struct s_complex_nb
 
 typedef	struct s_fractal
 {
+	char			*set;
 	int				iterations;
 	t_complex_nb	min;
 	t_complex_nb	max;
 }				t_fractal;
+
+/*
+** Management of the coordinate system to know where to put the pixel in the window
+*/
+
+typedef	struct s_canvas
+{
+	int	x;
+	int y;
+}				t_canvas;
 
 
 /*
@@ -68,8 +77,16 @@ typedef struct  s_mlx
 	int     endian;
 }				t_mlx;
 
+typedef struct	s_vars
+{
+	t_fractal	fractal;
+    t_canvas	canvas;
+}				t_vars;
+
 
 static void		key_actions(int key, t_mlx *mlx);
-int	ft_strcmp(const char *s1, const char *s2);
+int				ft_strcmp(const char *s1, const char *s2);
+void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+static void   	Mandelbrot(t_fractal fractal, t_canvas canvas, t_mlx *mlx);
 
 #endif

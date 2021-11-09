@@ -1,36 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_management.c                                   :+:      :+:    :+:   */
+/*   colors_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 09:21:40 by salimon          ###   ########.fr       */
+/*   Created: 2021/11/08 07:37:43 by salimon           #+#    #+#             */
+/*   Updated: 2021/11/09 06:15:58 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "keycodes.h"
+#include "../includes/fractol.h"
+#include "../includes/keycodes.h"
+#include "../includes/colors.h"
 
-static void    key_actions(int key, t_mlx *mlx)
-{
-    if (key == ESC_KEY)
-	    mlx_destroy_window(mlx->mlx, mlx->win);
-}
-
-/*
-** Zoom in / out INDEFINITLY with mouse wheel
-** Bonus : zoom follows the actual mouse position
-*/
-
-void zoom(int key)
-{
-
-}
-
-/*BONUS*/
-void move(int key)
-{
-    /*move with the arrows*/
-}
+//You must use at least a few colors to show the depth of each fractal. It’s even better f you hack away on psychedelic effects

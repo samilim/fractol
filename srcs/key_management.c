@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   key_management.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 09:04:05 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 09:17:33 by salimon          ###   ########.fr       */
+/*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
+/*   Updated: 2021/11/09 06:16:51 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-#include "keycodes.h"
+#include "../includes/fractol.h"
+#include "../includes/keycodes.h"
+#include "../includes/colors.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+static void    key_actions(int key, t_mlx *mlx)
 {
-	unsigned int	i;
-	unsigned char	*cs1;
-	unsigned char	*cs2;
+    if (key == ESC_KEY)
+	    mlx_destroy_window(mlx->mlx, mlx->win);
+}
 
-	i = 0;
-	cs1 = (unsigned char *)s1;
-	cs2 = (unsigned char *)s2;
-	while (cs1[i] == cs2[i] && cs1[i] != '\0' && cs2[i] != '\0')
-		i++;
-	return (cs1[i] - cs2[i]);
+/*
+** Zoom in / out INDEFINITLY with mouse wheel
+** Bonus : zoom follows the actual mouse position
+*/
+
+void zoom(int key)
+{
+
+}
+
+/*BONUS*/
+void move(int key)
+{
+    /*move with the arrows*/
 }
