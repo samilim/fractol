@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/09 08:26:57 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/12 06:35:46 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/keycodes.h"
 #include "../includes/colors.h"
 
-//gcc -Wall -Wextra -Werror -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter fractol.c key_management.c utils.c -lbsd -lmlx -lXext -lX11 && ./a.out
+//gcc -Wall -Wextra -Werror -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter fractal_sets/*.c srcs/*.c -lbsd -lmlx -lXext -lX11 && ./a.out Mandelbrot
 
 int	valid_arg(char **argv)
 {
@@ -31,21 +31,26 @@ int	print_help()
 	return (1);
 }
 
-static void	init_datas(char **argv, t_vars *vars)
+void	init_datas(char **argv, t_vars *vars)
 {
-	vars->fractal.set = argv[1];
+	t_fractal	fractal;
+	t_canvas	canvas;
+
 	vars->canvas.x = WIN_WIDTH / 2;
-	vars->canvas.y = WIN_HEIGHT / 2;
+	vars->canvas.y = WIN_HEIGHT /2;
+	vars->fractal.set = argv[1];
+	vars->fractal.iterations = 50;
 }
 
-static void	init_image(t_mlx *mlx)
+void	init_image(t_mlx *mlx)
 {
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	//mlx_hook(mlx.win, 2, 1L<<0, close_win, &mlx);
+	mlx_hook(mlx->win, 2, 0L, key_actions, &mlx);
 	mlx_loop(mlx->mlx);
 }
 
-static void	init_window(t_mlx *mlx)
+void	init_window(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
     mlx->win = mlx_new_window(mlx->mlx, 1200, 800, "Fractol");
@@ -72,21 +77,19 @@ You must be able to create different Julia set with the parameters of the progra
 
 int main(int argc, char **argv)
 {
-	t_vars		*vars;
-	t_mlx		*mlx;
-	t_fractal	fractal;
-	t_canvas	canvas;
+	t_mlx		mlx;
+	t_vars	vars;
 
 	
 	if (argc < 2 || !(valid_arg(argv)))
 		return (print_help());
 	else
 	{
-		init_datas(argv, vars);
-    	init_window(mlx);
-		if (vars->fractal.set == "Mandelbrot")
-			Mandelbrot(fractal, canvas, mlx);
-		init_image(mlx);
+		init_datas(argv, &vars);
+    	init_window(&mlx);
+		if (strcmp(vars.fractal.set, "Mandelbrot") == 0)
+			Mandelbrot(&vars, &mlx);
+		init_image(&mlx);
 	}
     return (0);
 }

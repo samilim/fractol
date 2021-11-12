@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/09 06:16:51 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/12 06:28:40 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #include "../includes/keycodes.h"
 #include "../includes/colors.h"
 
-static void    key_actions(int key, t_mlx *mlx)
+int    key_actions(int key, t_mlx *mlx)
 {
     if (key == ESC_KEY)
 	    mlx_destroy_window(mlx->mlx, mlx->win);
+    return (0);
 }
 
 /*

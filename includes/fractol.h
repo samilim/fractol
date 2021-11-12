@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/09 08:18:11 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/12 06:25:33 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <math.h>
+
+#include <string.h>
+
 # include "../mlx_linux/mlx.h"
 # include "../includes/keycodes.h"
 # include "../includes/colors.h"
@@ -39,14 +42,14 @@ typedef	struct s_complex_nb
 
 typedef	struct s_fractal
 {
-	char			*set;
+	const char			*set;
 	int				iterations;
-	t_complex_nb	min;
-	t_complex_nb	max;
+	//t_complex_nb	min;
+	//t_complex_nb	max;
 }				t_fractal;
 
 /*
-** Management of the coordinate system to know where to put the pixel in the window
+** Coordinate system to know where to put the pixel in the window
 */
 
 typedef	struct s_canvas
@@ -84,9 +87,9 @@ typedef struct	s_vars
 }				t_vars;
 
 
-static void		key_actions(int key, t_mlx *mlx);
+int		key_actions(int key, t_mlx *mlx);
 int				ft_strcmp(const char *s1, const char *s2);
 void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-static void   	Mandelbrot(t_fractal fractal, t_canvas canvas, t_mlx *mlx);
+void   	Mandelbrot(t_vars *vars, t_mlx *mlx);
 
 #endif

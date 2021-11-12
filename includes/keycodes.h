@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 04:45:39 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/08 09:00:28 by salimon          ###   ########.fr       */
+/*   Updated: 2021/11/12 06:29:45 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # ifdef __linux__
 #  define ESC_KEY 27
 
-#  define ZOOMIN_KEY 
-#  define ZOOMOUT_KEY
+#  define SCROLLUP_KEY 
+#  define SCROLLDOWN_KEY
 
-#  define UP_KEY 
-#  define DOWN_KEY 
-#  define LEFT_KEY 
-#  define RIGHT_KEY
+#  define UP_KEY 38
+#  define DOWN_KEY 40
+#  define LEFT_KEY 37
+#  define RIGHT_KEY 39
 
 # else
 /*
@@ -33,8 +33,8 @@
 */
 #  define ESC_KEY 53
 
-#  define ZOOMIN_KEY 
-#  define ZOOMOUT_KEY
+#  define SCROLLUP_KEY 4
+#  define SCROLLDOWN_KEY 5
 
 #  define UP_KEY 126
 #  define DOWN_KEY 125
