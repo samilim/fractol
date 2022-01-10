@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 09:04:05 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/09 22:25:58 by salimon          ###   ########.fr       */
+/*   Created: 2021/01/08 17:47:16 by salimon           #+#    #+#             */
+/*   Updated: 2021/12/12 03:29:11 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
-#include "../includes/keycodes.h"
-#include "../includes/colors.h"
+int	ft_atoi(const char *nb)
+{
+	unsigned int	i;
+	int				signe;
+	int				nmb;
 
-// int	ft_strcmp(const char *s1, const char *s2)
-// {
-// 	unsigned int	i;
-// 	unsigned char	*cs1;
-// 	unsigned char	*cs2;
-
-// 	i = 0;
-// 	cs1 = (unsigned char *)s1;
-// 	cs2 = (unsigned char *)s2;
-// 	while (cs1[i] == cs2[i] && cs1[i] != '\0' && cs2[i] != '\0')
-// 		i++;
-// 	return (cs1[i] - cs2[i]);
-// }
+	signe = 1;
+	i = 0;
+	nmb = 0;
+	while (nb[i] == ' ' || (nb[i] >= 8 && nb[i] <= 13))
+		i++;
+	if (nb[i] == '-' || nb[i] == '+')
+	{
+		if (nb[i] == '-')
+			signe *= -1;
+		i++;
+	}
+	while (nb[i] >= '0' && nb[i] <= '9')
+		nmb = nmb * 10 + nb[i++] - '0';
+	return (nmb * signe);
+}

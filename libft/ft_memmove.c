@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 09:04:05 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/09 22:25:58 by salimon          ###   ########.fr       */
+/*   Created: 2021/01/08 17:04:31 by salimon           #+#    #+#             */
+/*   Updated: 2021/01/16 13:14:08 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
-#include "../includes/keycodes.h"
-#include "../includes/colors.h"
+#include "libft.h"
 
-// int	ft_strcmp(const char *s1, const char *s2)
-// {
-// 	unsigned int	i;
-// 	unsigned char	*cs1;
-// 	unsigned char	*cs2;
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	size_t		i;
+	char		*cd;
+	char		*cs;
 
-// 	i = 0;
-// 	cs1 = (unsigned char *)s1;
-// 	cs2 = (unsigned char *)s2;
-// 	while (cs1[i] == cs2[i] && cs1[i] != '\0' && cs2[i] != '\0')
-// 		i++;
-// 	return (cs1[i] - cs2[i]);
-// }
+	i = -1;
+	cd = (char *)dest;
+	cs = (char *)src;
+	if (!dest && !src)
+		return (NULL);
+	if (cs < cd)
+	{
+		while (n > i + 1)
+		{
+			cd[n - 1] = cs[n - 1];
+			n--;
+		}
+	}
+	else
+	{
+		while (++i < n)
+			cd[i] = cs[i];
+	}
+	return (dest);
+}

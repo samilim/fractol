@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 09:04:05 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/09 22:25:58 by salimon          ###   ########.fr       */
+/*   Created: 2021/01/10 16:34:41 by salimon           #+#    #+#             */
+/*   Updated: 2021/01/12 18:29:54 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
-#include "../includes/keycodes.h"
-#include "../includes/colors.h"
+#include "libft.h"
 
-// int	ft_strcmp(const char *s1, const char *s2)
-// {
-// 	unsigned int	i;
-// 	unsigned char	*cs1;
-// 	unsigned char	*cs2;
-
-// 	i = 0;
-// 	cs1 = (unsigned char *)s1;
-// 	cs2 = (unsigned char *)s2;
-// 	while (cs1[i] == cs2[i] && cs1[i] != '\0' && cs2[i] != '\0')
-// 		i++;
-// 	return (cs1[i] - cs2[i]);
-// }
+void	ft_putnbr_fd(int nb, int fd)
+{
+	if (nb == -2147483648)
+	{
+		write(fd, "-", 1);
+		write(fd, "2", 1);
+		nb = 147483648;
+	}
+	if (nb < 0)
+	{
+		write(fd, "-", 1);
+		nb = nb * -1;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr_fd((nb / 10), fd);
+		ft_putchar_fd(nb % 10 + '0', fd);
+	}
+	else
+		ft_putchar_fd(nb + '0', fd);
+}

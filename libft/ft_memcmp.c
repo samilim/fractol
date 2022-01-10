@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 09:04:05 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/09 22:25:58 by salimon          ###   ########.fr       */
+/*   Created: 2021/01/08 17:18:41 by salimon           #+#    #+#             */
+/*   Updated: 2021/12/12 03:39:44 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
-#include "../includes/keycodes.h"
-#include "../includes/colors.h"
+#include "libft.h"
 
-// int	ft_strcmp(const char *s1, const char *s2)
-// {
-// 	unsigned int	i;
-// 	unsigned char	*cs1;
-// 	unsigned char	*cs2;
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*cs1;
+	unsigned char	*cs2;
 
-// 	i = 0;
-// 	cs1 = (unsigned char *)s1;
-// 	cs2 = (unsigned char *)s2;
-// 	while (cs1[i] == cs2[i] && cs1[i] != '\0' && cs2[i] != '\0')
-// 		i++;
-// 	return (cs1[i] - cs2[i]);
-// }
+	i = 0;
+	cs1 = (unsigned char *)s1;
+	cs2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (i < n - 1 && (cs1[i] == cs2[i]))
+	{
+		if ((i == n - 1) && (cs1[i] == cs2[i] && cs1[i] && cs2[i]))
+			return (cs1[i] - cs2[i]);
+		i++;
+	}
+	return (cs1[i] - cs2[i]);
+}

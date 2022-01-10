@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/12 06:25:33 by salimon          ###   ########.fr       */
+/*   Updated: 2022/01/10 02:59:38 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 
 #include <string.h>
 
+# include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 # include "../includes/keycodes.h"
 # include "../includes/colors.h"
 
@@ -42,7 +44,7 @@ typedef	struct s_complex_nb
 
 typedef	struct s_fractal
 {
-	const char			*set;
+	const char		*set;
 	int				iterations;
 	//t_complex_nb	min;
 	//t_complex_nb	max;
@@ -88,8 +90,7 @@ typedef struct	s_vars
 
 
 int		key_actions(int key, t_mlx *mlx);
-int				ft_strcmp(const char *s1, const char *s2);
-void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void   	Mandelbrot(t_vars *vars, t_mlx *mlx);
 
 #endif

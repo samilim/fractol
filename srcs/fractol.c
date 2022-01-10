@@ -6,15 +6,16 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2021/11/12 06:35:46 by salimon          ###   ########.fr       */
+/*   Updated: 2022/01/10 03:02:14 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 #include "../includes/keycodes.h"
 #include "../includes/colors.h"
+# include "../mlx_linux/mlx.h"
 
-//gcc -Wall -Wextra -Werror -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter fractal_sets/*.c srcs/*.c -lbsd -lmlx -lXext -lX11 && ./a.out Mandelbrot
+//gcc -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter -g libft/*.c fractal_sets/*.c srcs/*.c -lbsd -lmlx -lXext -lX11 && gdb ./a.out Mandelbrot
 
 int	valid_arg(char **argv)
 {
@@ -46,7 +47,7 @@ void	init_image(t_mlx *mlx)
 {
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	//mlx_hook(mlx.win, 2, 1L<<0, close_win, &mlx);
-	mlx_hook(mlx->win, 2, 0L, key_actions, &mlx);
+	//mlx_hook(mlx->win, 2, 0L, key_actions, &mlx);
 	mlx_loop(mlx->mlx);
 }
 
@@ -87,9 +88,8 @@ int main(int argc, char **argv)
 	{
 		init_datas(argv, &vars);
     	init_window(&mlx);
-		if (strcmp(vars.fractal.set, "Mandelbrot") == 0)
+		if (ft_strcmp(vars.fractal.set, "Mandelbrot") == 0)
 			Mandelbrot(&vars, &mlx);
 		init_image(&mlx);
 	}
-    return (0);
 }

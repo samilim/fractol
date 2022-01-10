@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 09:04:05 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/09 22:25:58 by salimon          ###   ########.fr       */
+/*   Created: 2021/01/08 18:14:55 by salimon           #+#    #+#             */
+/*   Updated: 2021/12/12 03:40:06 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
-#include "../includes/keycodes.h"
-#include "../includes/colors.h"
+#include "libft.h"
 
-// int	ft_strcmp(const char *s1, const char *s2)
-// {
-// 	unsigned int	i;
-// 	unsigned char	*cs1;
-// 	unsigned char	*cs2;
+char	*ft_strchr(const char *str, int ch)
+{
+	unsigned int	i;
 
-// 	i = 0;
-// 	cs1 = (unsigned char *)s1;
-// 	cs2 = (unsigned char *)s2;
-// 	while (cs1[i] == cs2[i] && cs1[i] != '\0' && cs2[i] != '\0')
-// 		i++;
-// 	return (cs1[i] - cs2[i]);
-// }
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)ch)
+			return ((char *)&str[i]);
+		i++;
+	}
+	if (str[i] == (char)ch)
+		return ((char *)&str[i]);
+	return (NULL);
+}
