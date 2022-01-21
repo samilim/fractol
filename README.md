@@ -27,6 +27,9 @@ referenced online).
 ________________________________________________________________________
 ## Doc
 
+YTB
+nicsure
+
 How to start
 https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 

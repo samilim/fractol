@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/10 02:59:38 by salimon          ###   ########.fr       */
+/*   Updated: 2022/01/21 06:41:45 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "../includes/keycodes.h"
 # include "../includes/colors.h"
 
-# define WIN_WIDTH 1200
+# define WIN_WIDTH 800
 # define WIN_HEIGHT 800
 
 typedef	struct s_complex_nb
@@ -45,7 +45,8 @@ typedef	struct s_complex_nb
 typedef	struct s_fractal
 {
 	const char		*set;
-	int				iterations;
+	int				max_iteration;
+	t_complex_nb	c;
 	//t_complex_nb	min;
 	//t_complex_nb	max;
 }				t_fractal;

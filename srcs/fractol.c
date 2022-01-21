@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/10 03:02:14 by salimon          ###   ########.fr       */
+/*   Updated: 2022/01/21 06:50:07 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "../includes/keycodes.h"
 #include "../includes/colors.h"
 # include "../mlx_linux/mlx.h"
+# include <math.h>
 
-//gcc -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter -g libft/*.c fractal_sets/*.c srcs/*.c -lbsd -lmlx -lXext -lX11 && gdb ./a.out Mandelbrot
+//gcc -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter -g libft/*.c fractal_sets/*.c srcs/*.c -lbsd -lmlx -lXext -lX11 -lm && gdb ./a.out Mandelbrot
 
 int	valid_arg(char **argv)
 {
@@ -40,7 +41,7 @@ void	init_datas(char **argv, t_vars *vars)
 	vars->canvas.x = WIN_WIDTH / 2;
 	vars->canvas.y = WIN_HEIGHT /2;
 	vars->fractal.set = argv[1];
-	vars->fractal.iterations = 50;
+	vars->fractal.max_iteration = 50;
 }
 
 void	init_image(t_mlx *mlx)
