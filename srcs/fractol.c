@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/21 06:50:07 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/07 07:51:41 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include "../includes/colors.h"
 # include "../mlx_linux/mlx.h"
 # include <math.h>
+
+
+//comp home
+//gcc -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter libft/*.c fractal_sets/*.c srcs/*.c -lbsd -lmlx -lXext -lX11 -lm && ./a.out Mandelbrot
 
 //gcc -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter -g libft/*.c fractal_sets/*.c srcs/*.c -lbsd -lmlx -lXext -lX11 -lm && gdb ./a.out Mandelbrot
 
@@ -38,10 +42,11 @@ void	init_datas(char **argv, t_vars *vars)
 	t_fractal	fractal;
 	t_canvas	canvas;
 
-	vars->canvas.x = WIN_WIDTH / 2;
-	vars->canvas.y = WIN_HEIGHT /2;
+	vars->canvas.x = 0.0;
+	vars->canvas.y = 0.0;
 	vars->fractal.set = argv[1];
 	vars->fractal.max_iteration = 50;
+	vars->fractal.palette = 3;
 }
 
 void	init_image(t_mlx *mlx)
@@ -55,8 +60,8 @@ void	init_image(t_mlx *mlx)
 void	init_window(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-    mlx->win = mlx_new_window(mlx->mlx, 1200, 800, "Fractol");
-    mlx->img = mlx_new_image(mlx->mlx, 1200, 800);
+    mlx->win = mlx_new_window(mlx->mlx, WIN_HEIGHT, WIN_WIDTH, "Fractol");
+    mlx->img = mlx_new_image(mlx->mlx, WIN_HEIGHT, WIN_WIDTH);
 	/*
 	** After creating an image, we can call `mlx_get_data_addr`, we pass
 	** `bits_per_pixel`, `line_length`, and `endian` by reference. These will

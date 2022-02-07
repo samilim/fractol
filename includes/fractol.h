@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/01/21 06:41:45 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/07 07:35:49 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "../includes/keycodes.h"
 # include "../includes/colors.h"
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 800
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
 
 typedef	struct s_complex_nb
 {
@@ -46,9 +46,8 @@ typedef	struct s_fractal
 {
 	const char		*set;
 	int				max_iteration;
-	t_complex_nb	c;
-	//t_complex_nb	min;
-	//t_complex_nb	max;
+	t_complex_nb	c; //?
+	int				palette;
 }				t_fractal;
 
 /*
@@ -93,5 +92,6 @@ typedef struct	s_vars
 int		key_actions(int key, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void   	Mandelbrot(t_vars *vars, t_mlx *mlx);
+int     get_color(t_vars *vars, int iteration);
 
 #endif
