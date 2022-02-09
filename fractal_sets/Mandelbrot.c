@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 06:01:37 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/07 07:35:19 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/09 02:14:56 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 * scaling :
 */
 
-void    next_z(t_complex_nb *z, t_complex_nb *c)
+static void    next_z(t_complex_nb *z, t_complex_nb *c)
 {
     double nz;
 
@@ -54,7 +54,7 @@ double    magnitude(t_complex_nb *complex)
     return (sq);
 }
 
-void    Mandelbrot(t_vars *vars, t_mlx *mlx)
+void    Mandelbrot(t_vars *vars)
 {
     t_complex_nb    z;
     t_complex_nb    c;
@@ -73,109 +73,35 @@ void    Mandelbrot(t_vars *vars, t_mlx *mlx)
             while ((iteration++ < (vars->fractal.max_iteration)) && ((z.real_part * z.real_part + z.imaginary_part * z.imaginary_part) <= 4.0))
                 next_z(&z, &c);
             if (iteration < (vars->fractal.max_iteration))
-                my_mlx_pixel_put(mlx, vars->canvas.x, vars->canvas.y, get_color(vars, iteration));
+                my_mlx_pixel_put(&vars->mlx, vars->canvas.x, vars->canvas.y, get_color(vars, iteration));
             vars->canvas.x++;
         }
         vars->canvas.y++;
     }
 }
 
-
-// MARCHE
 // void    Mandelbrot(t_vars *vars, t_mlx *mlx)
 // {
 //     t_complex_nb    z;
 //     t_complex_nb    c;
 //     int             iteration;
-//     double          tmp;
-//     int y;
-//     int x;
-//     double nz;
-//     double c_real;
-//     double c_im;
-//     double a;
-//     double b;
 
-//     x = 0;
-//     y = 0;
-//     //printf("WH %d\n", WIN_HEIGHT);
-//     //printf("ww %d\n", WIN_WIDTH);
-//     //printf("iter max %d\n", vars->fractal.max_iteration);
-//     while(y < WIN_HEIGHT)
+//     while(vars->canvas.y < WIN_HEIGHT)
 //     {
-//         x = 0;
-//         while (x < WIN_WIDTH)
+//         vars->canvas.x = 0;
+//         while (vars->canvas.x < WIN_WIDTH)
 //         {
-//             c_real = (x - (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
-//             c_im = (y - (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
-//             //printf("%f\n", c_real);
-//             //printf("%f\n", c_im);
-//             a = 0;
-//             b = 0;
+//             c.real_part = (vars->canvas.x - (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
+//             c.imaginary_part = (vars->canvas.y - (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
+//             z.real_part = 0;
+//             z.imaginary_part = 0;
 //             iteration = 0;
-//             while ((iteration < (vars->fractal.max_iteration)) && ((a * a + b * b) <= 4.0))
-//             {
-//                 nz = a*a - b*b + c_real;
-//                 b = 2*a*b + c_im;
-//                 a = nz;
-//                 iteration++;
-//             }
-//             //printf("x = %d\n", x);
-//             printf("y = %d\n", y);
+//             while ((iteration++ < (vars->fractal.max_iteration)) && ((z.real_part * z.real_part + z.imaginary_part * z.imaginary_part) <= 4.0))
+//                 next_z(&z, &c);
 //             if (iteration < (vars->fractal.max_iteration))
-//             {
-//                 //printf("putpixel\n");
-//                 my_mlx_pixel_put(mlx, x, y, get_color(iteration));
-//             }
-//             else   
-//                 my_mlx_pixel_put(mlx, x, y, get_color(iteration));
-//             x++;
+//                 my_mlx_pixel_put(mlx, vars->canvas.x, vars->canvas.y, get_color(vars, iteration));
+//             vars->canvas.x++;
 //         }
-//         y++;
-//     }
-// }
-
-// void    Mandelbrot(t_vars *vars, t_mlx *mlx)
-// {
-//     t_complex_nb    z;
-//     t_complex_nb    c;
-//     int             iteration;
-//     double          tmp;
-//     int y;
-//     int x;
-//     double a;
-//     double b;
-
-//     x = 0;
-//     y = 0;
-//     while(y < WIN_HEIGHT)
-//     {
-//         while (x < WIN_WIDTH)
-//         {
-//             a = (double)(x - (WIN_WIDTH / 2)) / (double)(WIN_WIDTH / 4);//a
-//             b = (double)(y - (WIN_HEIGHT / 2)) / (double)(WIN_HEIGHT / 4);//b
-//             //printf("%f\n", a);
-//             //printf("%f\n", b);
-//             complex(0, 0, &z);
-//             complex(a, b, &c);//a,b
-//             //printf("Current z : Real part : %f, imaginary part, \n", z.real_part, z.imaginary_part);
-//             //printf("Current c : Real part : %f, imaginary part, \n", c.real_part, c.imaginary_part);
-//             iteration = 0;
-//             while ((iteration < (vars->fractal.max_iteration)) && magnitude(&z) > 2.0)
-//             {
-//                 iteration++;
-//                 square(&z);
-//                 add(&z, &c);
-//                 printf("Current z : Real part : %f, imaginary part : %f, magnitude : %f\n", z.real_part, z.imaginary_part, z.magnitude);
-//                 //printf("Current c : Real part : %f, imaginary part : %f, magnitude : %f\n", c.real_part, c.imaginary_part, c.magnitude);
-//                 if (magnitude(&z) <= 2.0)
-//                 {
-//                     printf("x = %d, y = %d\n", x, y);
-//                     my_mlx_pixel_put(mlx, x, y, LAVENDER);
-//                 }
-//             }
-//             x++;
-//         }
-//         y++;
+//         vars->canvas.y++;
 //     }
 // }

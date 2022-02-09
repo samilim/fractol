@@ -32,6 +32,7 @@ nicsure
 
 How to start
 https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+https://github.com/qst0/ft_libgfx#getting-started-with-fractol-ft_fractal
 
 Endianness
 https://www.techtarget.com/searchnetworking/definition/big-endian-and-little-endian

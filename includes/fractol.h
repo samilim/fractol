@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/07 07:35:49 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/09 02:26:21 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <mlx.h>
+//# include <mlx.h>
 # include <math.h>
 
 #include <string.h>
@@ -46,7 +46,6 @@ typedef	struct s_fractal
 {
 	const char		*set;
 	int				max_iteration;
-	t_complex_nb	c; //?
 	int				palette;
 }				t_fractal;
 
@@ -86,12 +85,17 @@ typedef struct	s_vars
 {
 	t_fractal	fractal;
     t_canvas	canvas;
+	t_mlx		mlx;
 }				t_vars;
 
-
-int		key_actions(int key, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-void   	Mandelbrot(t_vars *vars, t_mlx *mlx);
 int     get_color(t_vars *vars, int iteration);
+int		key_hook(int keycode, t_vars *vars);
+int		mouse_hook(int keycode, t_vars *vars);
+/*
+** Fractal algorithms
+*/
+void   	Mandelbrot(t_vars *vars);
+void    Julia(t_vars *vars);
 
 #endif
