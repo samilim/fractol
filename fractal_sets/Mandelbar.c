@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Mandelbrot.c                                       :+:      :+:    :+:   */
+/*   Tricorn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 06:01:37 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 06:39:03 by salimon          ###   ########.fr       */
+/*   Created: 2022/02/09 06:14:35 by salimon           #+#    #+#             */
+/*   Updated: 2022/02/09 06:55:31 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	next_z(t_complex_nb *z, t_complex_nb *c)
 {
 	double	nz;
 
-	nz = z->r * z->r - z->i * z->i + c->r;
-	z->i = 2 * z->r * z->i + c->i;
+	nz = z->r * z->i - z->i * z->i + c->r;
+	z->i = (-2.0) * z->r * z->i + c->i;
 	z->r = nz;
 }
 
@@ -33,7 +33,7 @@ static double	magnitude(t_complex_nb *complex)
 	return (sq);
 }
 
-void	mandelbrot(t_vars *vars)
+void	mandelbar(t_vars *vars)
 {
 	t_complex_nb	z;
 	t_complex_nb	c;
@@ -44,7 +44,7 @@ void	mandelbrot(t_vars *vars)
 		vars->canvas.x = 0;
 		while (vars->canvas.x < WIN_WIDTH)
 		{
-			c.r = (vars->canvas.x
+			c.r = 0.4 + (vars->canvas.x
 					- (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
 			c.i = (vars->canvas.y
 					- (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
