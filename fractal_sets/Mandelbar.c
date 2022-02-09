@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Tricorn.c                                          :+:      :+:    :+:   */
+/*   Mandelbar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 06:14:35 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 06:55:31 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/09 07:05:16 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	next_z(t_complex_nb *z, t_complex_nb *c)
 {
 	double	nz;
 
-	nz = z->r * z->i - z->i * z->i + c->r;
+	nz = z->r * z->r - z->i * z->i + c->r;
 	z->i = (-2.0) * z->r * z->i + c->i;
 	z->r = nz;
 }
@@ -44,7 +44,7 @@ void	mandelbar(t_vars *vars)
 		vars->canvas.x = 0;
 		while (vars->canvas.x < WIN_WIDTH)
 		{
-			c.r = 0.4 + (vars->canvas.x
+			c.r = (vars->canvas.x
 					- (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
 			c.i = (vars->canvas.y
 					- (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
