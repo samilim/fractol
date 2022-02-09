@@ -37,6 +37,11 @@ https://github.com/qst0/ft_libgfx#getting-started-with-fractol-ft_fractal
 Endianness
 https://www.techtarget.com/searchnetworking/definition/big-endian-and-little-endian
 
+Fractal algorithms
+https://lodev.org/cgtutor/juliamandelbrot.html
+https://rosettacode.org/wiki/Julia_set
+https://batchloaf.wordpress.com/2016/02/13/example-code-from-presentation-ways-of-seeing-julia-sets/
+
 _________________________________________________________________________
 ## Steps
 

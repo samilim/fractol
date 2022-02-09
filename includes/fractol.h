@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 02:26:21 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/09 06:56:54 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,15 @@
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
 
+/*
+** r = real part
+** i = imaginary part
+*/
+
 typedef	struct s_complex_nb
 {
-	double	real_part;
-	double	imaginary_part;
+	double	r;
+	double	i;
 	double	magnitude;
 	
 }				t_complex_nb;
@@ -47,6 +52,7 @@ typedef	struct s_fractal
 	const char		*set;
 	int				max_iteration;
 	int				palette;
+	int				arg;
 }				t_fractal;
 
 /*
@@ -83,19 +89,24 @@ typedef struct  s_mlx
 
 typedef struct	s_vars
 {
+	int			argc;
+	char		**argv;
 	t_fractal	fractal;
     t_canvas	canvas;
 	t_mlx		mlx;
 }				t_vars;
 
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	init_window(t_vars *vars);
+void	init_image(t_vars *vars);
 int     get_color(t_vars *vars, int iteration);
 int		key_hook(int keycode, t_vars *vars);
 int		mouse_hook(int keycode, t_vars *vars);
 /*
 ** Fractal algorithms
 */
-void   	Mandelbrot(t_vars *vars);
-void    Julia(t_vars *vars);
+void   	mandelbrot(t_vars *vars);
+void    julia(t_vars *vars);
+void	mandelbar(t_vars *vars);
 
 #endif

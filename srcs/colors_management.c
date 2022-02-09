@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 07:37:43 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/07 07:53:20 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/09 07:06:01 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ int rainbow(int iteration)
         return (YELLOW);
     if (iteration < 100)
         return (MAGENTA);
+    if (iteration < 150)
+        return (ALICE_BLUE);
+    if (iteration < 200)
+        return (CYAN);
+    if (iteration < 300)
+        return (SALMON);
+    if (iteration < 500)
+        return (SADDLEBROWN);
     return (BLACK);
 }
 

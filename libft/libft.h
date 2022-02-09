@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 18:25:14 by salimon           #+#    #+#             */
-/*   Updated: 2021/12/18 06:00:16 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/09 03:55:24 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
+int					ft_isfloat(char *str);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
