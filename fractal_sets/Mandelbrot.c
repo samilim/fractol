@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 06:01:37 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 06:39:03 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/10 07:56:04 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	mandelbrot(t_vars *vars)
 		vars->canvas.x = 0;
 		while (vars->canvas.x < WIN_WIDTH)
 		{
-			c.r = (vars->canvas.x
+			c.r = vars->canvas.zoom * (vars->canvas.x
 					- (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
-			c.i = (vars->canvas.y
+			c.i = vars->canvas.zoom * (vars->canvas.y
 					- (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
 			z.r = 0;
 			z.i = 0;

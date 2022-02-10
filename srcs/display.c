@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 05:20:45 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/10 08:38:46 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,21 @@ void	init_window(t_vars *vars)
 {
 	vars->mlx.mlx = mlx_init();
     vars->mlx.win = mlx_new_window(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH, "Fractol");
-    vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
-	/*
-	** After creating an image, we can call `mlx_get_data_addr`, we pass
-	** `bits_per_pixel`, `line_length`, and `endian` by reference. These will
-	** then be set accordingly for the *current* data address.
-	*/
+    // vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
+	// vars->mlx.addr = mlx_get_data_addr(vars->mlx.img, &vars->mlx.bits_per_pixel, &vars->mlx.line_length,
+	// 							&vars->mlx.endian);
+}
+
+void	display_fractal(t_vars *vars)
+{
+	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
 	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img, &vars->mlx.bits_per_pixel, &vars->mlx.line_length,
 								&vars->mlx.endian);
+	if (ft_strcmp(vars->fractal.set, "Mandelbrot") == 0)
+		mandelbrot(vars);
+	else if (ft_strcmp(vars->fractal.set, "Julia") == 0)
+		julia(vars);
+	else if (ft_strcmp(vars->fractal.set, "Mandelbar") == 0)
+		mandelbar(vars);
+	init_image(vars);
 }

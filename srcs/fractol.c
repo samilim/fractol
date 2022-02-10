@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 07:05:35 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/10 08:34:34 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	valid_arg(char **argv, t_vars *vars)
 int	print_help()
 {
 	printf("Invalid parameter.\n");
-	printf("Please use one of those parameters :\n Mandelbrot\n Julia\n");
+	printf("Please use one of those parameters :\n Mandelbrot\n Julia (add a second int parameter between 1 and 5 to choose the Julia's configuration to initate)\n");
 	return (1);
 }
 
@@ -70,20 +70,15 @@ void	init_datas(int argc, char **argv, t_vars *vars)
 	vars->argv = argv;
 	vars->canvas.x = 0.0;
 	vars->canvas.y = 0.0;
-	vars->fractal.set = argv[1];
+	vars->canvas.zoom = 1;
 	vars->fractal.max_iteration = 200;
 	vars->fractal.palette = 3;
+	vars->fractal.set = argv[1];
+	if (argc == 3)
+		vars->fractal.arg = ft_atoi(argv[1]);
+	else
+		vars->fractal.arg = 1;
 }
-
-/*
-A parameter is passed on the command line to define what type of fractal will be
-viewed. If no parameter is provided, or if the parameter is invalid, the program
-displays a list of available parameters and exits properly.
-•More parameters must be used for fractal parameters or ignored.
-You must be able to create different Julia set with the parameters of the program.
-*/
-
-// USE IMAGE (?)
 
 int main(int argc, char **argv)
 {
@@ -94,16 +89,11 @@ int main(int argc, char **argv)
 		return (print_help());
 	else
 	{
-		printf("===KEYS===\nSpace to change palette\nMouse wheel to zoom in and out\nEsc to exit\n==========\n");
+		printf("\n===KEYS===\n[Esc] to exit\n[Space] to change palette\n[Mouse wheel] to zoom in and out\n[Left click] to change fractal\n[Arrows] to move\n[Move the mouse] to change the Julia's set pattern\n==========\n\n");
 		init_datas(argc, argv, &vars);
 		init_window(&vars);
-		if (ft_strcmp(vars.fractal.set, "Mandelbrot") == 0)
-			mandelbrot(&vars);
-		else if (ft_strcmp(vars.fractal.set, "Julia") == 0)
-			julia(&vars);
-		else if (ft_strcmp(vars.fractal.set, "Mandelbar") == 0)
-			mandelbar(&vars);
-		init_image(&vars);
+		display_fractal(&vars);
+		//init_image(&vars);
 	}
 	return (0);
 }

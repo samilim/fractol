@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 06:56:54 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/10 08:03:49 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef	struct s_canvas
 {
 	int	x;
 	int y;
+	double	zoom;
 }				t_canvas;
 
 
@@ -72,7 +73,7 @@ typedef	struct s_canvas
 ** win 		; windows id
 ** image	; return a pointer to the window we have just created. We can give the window height, width and a title. We then will have to call mlx_loop to initiate the window rendering
 ** addr		; memory address on which we will mutate the bytes accordingly
-** bpp		;
+** bpp		; bits per pixel
 ** endian	;
 */
 
@@ -102,6 +103,7 @@ void	init_image(t_vars *vars);
 int     get_color(t_vars *vars, int iteration);
 int		key_hook(int keycode, t_vars *vars);
 int		mouse_hook(int keycode, t_vars *vars);
+void	display_fractal(t_vars *vars);
 /*
 ** Fractal algorithms
 */
