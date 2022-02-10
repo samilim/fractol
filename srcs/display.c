@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 08:38:46 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/10 10:03:01 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ void	display_fractal(t_vars *vars)
 	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
 	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img, &vars->mlx.bits_per_pixel, &vars->mlx.line_length,
 								&vars->mlx.endian);
-	if (ft_strcmp(vars->fractal.set, "Mandelbrot") == 0)
+	if (vars->fractal.set == 1)
 		mandelbrot(vars);
-	else if (ft_strcmp(vars->fractal.set, "Julia") == 0)
+	else if (vars->fractal.set == 2)
 		julia(vars);
-	else if (ft_strcmp(vars->fractal.set, "Mandelbar") == 0)
+	else if (vars->fractal.set == 3)
 		mandelbar(vars);
+	else if (vars->fractal.set == 4)
+		phoenix(vars);
 	init_image(vars);
 }

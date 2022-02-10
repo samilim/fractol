@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 08:03:49 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/10 10:06:05 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef	struct s_complex_nb
 
 typedef	struct s_fractal
 {
-	const char		*set;
+	int				set;
 	int				max_iteration;
 	int				palette;
 	int				arg;
@@ -110,5 +110,6 @@ void	display_fractal(t_vars *vars);
 void   	mandelbrot(t_vars *vars);
 void    julia(t_vars *vars);
 void	mandelbar(t_vars *vars);
+void	phoenix(t_vars *vars);
 
 #endif

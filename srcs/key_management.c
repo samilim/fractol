@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 08:38:11 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/10 10:03:26 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ int	mouse_hook(int keycode, t_vars *vars)
 	{
 		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
         zoom(keycode, vars);
+		display_fractal(vars);
+	}
+	if (keycode == LEFT_CLICK)
+	{
+		printf("Set : %d\n", vars->fractal.set);
+		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
+		if (vars->fractal.set != 4)
+			vars->fractal.set++;
+		else
+			vars->fractal.set = 1;
 		display_fractal(vars);
 	}
 	/*varier config Julia avec les mvmts de la souris*/
