@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 10:02:31 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/11 02:46:05 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 
 void	init_set(t_vars *vars, char **argv)
 {
-	t_fractal	fractal;
-	
 	if (ft_strcmp(argv[1], "Mandelbrot") == 0)
 		vars->fractal.set = 1;
 	else if (ft_strcmp(argv[1], "Julia") == 0)
@@ -80,12 +78,12 @@ int	print_help()
 
 void	init_datas(int argc, char **argv, t_vars *vars)
 {
-	t_canvas	canvas;
-
 	vars->argc = argc;
 	vars->argv = argv;
 	vars->canvas.x = 0.0;
 	vars->canvas.y = 0.0;
+	vars->canvas.pos_x = 0;
+	vars->canvas.pos_y = 0;
 	vars->canvas.zoom = 1;
 	vars->fractal.max_iteration = 200;
 	vars->fractal.palette = 3;
@@ -98,8 +96,7 @@ void	init_datas(int argc, char **argv, t_vars *vars)
 int main(int argc, char **argv)
 {
 	t_vars	vars;
-	t_mlx		mlx;
-	
+
 	init_set(&vars, argv);
 	if (argc < 2 || !(valid_arg(argv, &vars)))
 		return (print_help());
@@ -108,8 +105,15 @@ int main(int argc, char **argv)
 		printf("\n===KEYS===\n[Esc] to exit\n[Space] to change palette\n[Mouse wheel] to zoom in and out\n[Left click] to change fractal\n[Arrows] to move\n[Move the mouse] to change the Julia's set pattern\n==========\n\n");
 		init_datas(argc, argv, &vars);
 		init_window(&vars);
-		display_fractal(&vars);
 		//init_image(&vars);
+		// vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
+		// vars->mlx.addr = mlx_get_data_addr(vars->mlx.img, &vars->mlx.bits_per_pixel, &vars->mlx.line_length,
+		// 						&vars->mlx.endian);
+		// vars.mlx.img = mlx_new_image(vars.mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
+		// vars.mlx.addr = mlx_get_data_addr(vars.mlx.img, &vars.mlx.bits_per_pixel, &vars.mlx.line_length,
+		// 		&vars.mlx.endian);
+		display_fractal(&vars);
+		mlx_loop(vars.mlx.mlx);
 	}
 	return (0);
 }

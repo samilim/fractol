@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 06:33:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 06:31:33 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/11 03:40:29 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,15 @@ void    julia(t_vars *vars)
     t_complex_nb    c;
     int             iteration;
 
+    vars->canvas.x = 0;
+	vars->canvas.y = 0;
     while(vars->canvas.y < WIN_HEIGHT)
     {
         vars->canvas.x = 0;
         while (vars->canvas.x < WIN_WIDTH)
         {
-            z.r = (vars->canvas.x - (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
-            z.i = (vars->canvas.y - (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
+            z.r = vars->canvas.zoom * (vars->canvas.x + vars->canvas.pos_x - (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
+            z.i = vars->canvas.zoom * (vars->canvas.y + vars->canvas.pos_y - (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
             julias_sets(vars, &c);
             iteration = 0;
             while ((iteration++ < (vars->fractal.max_iteration)) && ((z.r * z.r + z.i * z.i) <= 4.0))

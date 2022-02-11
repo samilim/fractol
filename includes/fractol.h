@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 10:06:05 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/11 03:36:51 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef	struct s_canvas
 {
 	int	x;
 	int y;
+	int	pos_x;
+	int pos_y;
 	double	zoom;
 }				t_canvas;
 
@@ -102,7 +104,8 @@ void	init_window(t_vars *vars);
 void	init_image(t_vars *vars);
 int     get_color(t_vars *vars, int iteration);
 int		key_hook(int keycode, t_vars *vars);
-int		mouse_hook(int keycode, t_vars *vars);
+int		left_click(int keycode, int x, int y, t_vars *vars);
+int		mouse_hook(int keycode, int x, int y, t_vars *vars);
 void	display_fractal(t_vars *vars);
 /*
 ** Fractal algorithms

@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 10:03:26 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/11 03:44:28 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/keycodes.h"
 #include "../includes/colors.h"
 # include "../mlx_linux/mlx.h"
-
+#include <unistd.h>
 /*
 ** Zoom in / out INDEFINITLY with mouse wheel
 ** Bonus : zoom follows the actual mouse position
@@ -41,13 +41,13 @@ void zoom(int keycode, t_vars *vars)
 void move(int keycode, t_vars *vars)
 {
 	if (keycode == UP_KEY)
-		vars->canvas.y += 0.1;
+		vars->canvas.pos_y += 10;
 	if (keycode == DOWN_KEY)
-		vars->canvas.y -= 0.1;
+		vars->canvas.pos_y -= 10;
 	if (keycode == LEFT_KEY)
-		vars->canvas.x -= 0.1;
+		vars->canvas.pos_x += 10;
 	if (keycode == RIGHT_KEY)
-		vars->canvas.x += 0.1;
+		vars->canvas.pos_x -= 10;
 }
 
 int	key_hook(int keycode, t_vars *vars)
@@ -60,7 +60,6 @@ int	key_hook(int keycode, t_vars *vars)
     }
 	if (keycode == SPACE_KEY)
 	{
-		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
 		if (vars->fractal.palette != 3)
 			vars->fractal.palette++;
 		else
@@ -70,26 +69,35 @@ int	key_hook(int keycode, t_vars *vars)
 	}
 	else if (keycode == UP_KEY || keycode == DOWN_KEY || keycode == LEFT_KEY || keycode == RIGHT_KEY)
 	{
-		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
 		move(keycode, vars);
 		display_fractal(vars);
 	}
 	return (0);
 }
 
-int	mouse_hook(int keycode, t_vars *vars)
+// int	left_click(int keycode, int x, int y, t_vars *vars)
+// {
+// 	write(1, &x, 1);
+// 	printf("set = %d\n", vars->fractal.set);
+// 	if (vars->fractal.set != 4)
+// 		vars->fractal.set++;
+// 	else
+// 		vars->fractal.set = 1;
+// 	display_fractal(vars);
+// 	return (0);
+// }
+
+int	mouse_hook(int keycode, int x, int y, t_vars *vars)
 {
+	printf("set = %d\n", vars->fractal.set);
 	printf("keycode = %d\n", keycode);
 	if (keycode == SCROLLDOWN_KEY || keycode == SCROLLUP_KEY)
 	{
-		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
         zoom(keycode, vars);
 		display_fractal(vars);
 	}
-	if (keycode == LEFT_CLICK)
+	else if (keycode == LEFT_CLICK)
 	{
-		printf("Set : %d\n", vars->fractal.set);
-		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
 		if (vars->fractal.set != 4)
 			vars->fractal.set++;
 		else

@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 07:37:43 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 08:23:24 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/11 01:46:39 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int rainbow(int iteration)
         return (SALMON);
     if (iteration < 500)
         return (SADDLEBROWN);
-    return (BLACK);
+    return (HOT_PINK);
 }
 
 int     get_color(t_vars *vars, int iteration)

@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 06:14:35 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/09 07:05:16 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/11 03:41:36 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	mandelbar(t_vars *vars)
 	t_complex_nb	c;
 	int				iteration;
 
+	vars->canvas.x = 0;
+	vars->canvas.y = 0;
 	while (vars->canvas.y++ < WIN_HEIGHT)
 	{
 		vars->canvas.x = 0;
