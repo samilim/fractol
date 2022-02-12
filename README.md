@@ -57,6 +57,7 @@ https://youtu.be/Y4ICbYtBGzA
 Understand the logic behind the calculation
 https://youtu.be/mBg74yR3ZiY
 https://youtu.be/6z7GQewK-Ks
+https://www.youtube.com/watch?v=ixFCsST2pF4
 
 To obtain the magnitude of a complex number, we add the squared real part to the squared imaginary part and calculate the square root of the result.
 Ex : 4 + i2 = square root of 20

@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/11 03:46:22 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/12 07:42:01 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	init_image(t_vars *vars)
 void	init_window(t_vars *vars)
 {
 	vars->mlx.mlx = mlx_init();
-    vars->mlx.win = mlx_new_window(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH, "Fractol");
+    vars->mlx.win = mlx_new_window(vars->mlx.mlx, WIN_HEIGHT+1, WIN_WIDTH+1, "Fractol");
 }
 
 void	display_fractal(t_vars *vars)
 {
-	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
+	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT+1, WIN_WIDTH+1);
 	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img, &vars->mlx.bits_per_pixel, &vars->mlx.line_length,
 			&vars->mlx.endian);
 	if (vars->fractal.set == 1)

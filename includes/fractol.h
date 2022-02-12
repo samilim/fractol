@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/11 03:36:51 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/12 08:10:07 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@
 # include "../includes/keycodes.h"
 # include "../includes/colors.h"
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+
+// # define WIN_HEIGHT 1280
+// # define WIN_WIDTH 960
+
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 600
 
 /*
 ** r = real part
@@ -39,8 +43,7 @@ typedef	struct s_complex_nb
 {
 	double	r;
 	double	i;
-	double	magnitude;
-	
+	double	magnitude;	
 }				t_complex_nb;
 
 /*
@@ -51,6 +54,10 @@ typedef	struct s_fractal
 {
 	int				set;
 	int				max_iteration;
+	double			r_factor;
+	double			i_factor;
+	double			r_min;
+	double			r_max;
 	int				palette;
 	int				arg;
 }				t_fractal;
@@ -67,7 +74,6 @@ typedef	struct s_canvas
 	int pos_y;
 	double	zoom;
 }				t_canvas;
-
 
 /*
 ** Mlx datas

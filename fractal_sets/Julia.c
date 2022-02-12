@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 06:33:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/11 03:40:29 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/12 08:02:51 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 void    julias_sets(t_vars *vars, t_complex_nb *c)
 {
+    //printf("Julia set = %d\n", vars->fractal.arg);
     if (vars->fractal.arg == 1)
     {
         c->r = -0.7;
@@ -61,13 +62,17 @@ void    julia(t_vars *vars)
 
     vars->canvas.x = 0;
 	vars->canvas.y = 0;
+    double si = 0.5 * vars->canvas.zoom * WIN_HEIGHT;
+	double sr = 0.5 * vars->canvas.zoom * WIN_WIDTH;
+	double ww = WIN_WIDTH / 2;
+	double wh = WIN_HEIGHT / 2;
     while(vars->canvas.y < WIN_HEIGHT)
     {
         vars->canvas.x = 0;
         while (vars->canvas.x < WIN_WIDTH)
         {
-            z.r = vars->canvas.zoom * (vars->canvas.x + vars->canvas.pos_x - (WIN_WIDTH / 2.0)) * 4.0 / WIN_WIDTH;
-            z.i = vars->canvas.zoom * (vars->canvas.y + vars->canvas.pos_y - (WIN_HEIGHT / 2.0)) * 4.0 / WIN_HEIGHT;
+            z.r = (vars->canvas.x - ww) / (sr) + vars->canvas.pos_x;
+			z.i = (vars->canvas.y - wh) / (si) + vars->canvas.pos_y;
             julias_sets(vars, &c);
             iteration = 0;
             while ((iteration++ < (vars->fractal.max_iteration)) && ((z.r * z.r + z.i * z.i) <= 4.0))

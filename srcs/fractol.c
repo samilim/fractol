@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/11 02:46:05 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/12 08:02:25 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ int	print_help()
 	return (1);
 }
 
+void	init_complex(t_vars *vars)
+{
+	
+}
+
 void	init_datas(int argc, char **argv, t_vars *vars)
 {
 	vars->argc = argc;
@@ -85,10 +90,16 @@ void	init_datas(int argc, char **argv, t_vars *vars)
 	vars->canvas.pos_x = 0;
 	vars->canvas.pos_y = 0;
 	vars->canvas.zoom = 1;
+	vars->fractal.r_min = -2.0;
+	vars->fractal.r_max = 2.0;
+	vars->fractal.i_min = -2.0;
+	vars->fractal.i_max = 2.0;
+	vars->fractal.r_factor = (vars->fractal.r_max - vars->fractal.r_min) / WIN_WIDTH;
+	vars->fractal.i_factor = (vars->fractal.i_max - vars->fractal.i_min) / WIN_HEIGHT;
 	vars->fractal.max_iteration = 200;
 	vars->fractal.palette = 3;
 	if (argc == 3)
-		vars->fractal.arg = ft_atoi(argv[1]);
+		vars->fractal.arg = ft_atoi(argv[2]);
 	else
 		vars->fractal.arg = 1;
 }
@@ -105,13 +116,6 @@ int main(int argc, char **argv)
 		printf("\n===KEYS===\n[Esc] to exit\n[Space] to change palette\n[Mouse wheel] to zoom in and out\n[Left click] to change fractal\n[Arrows] to move\n[Move the mouse] to change the Julia's set pattern\n==========\n\n");
 		init_datas(argc, argv, &vars);
 		init_window(&vars);
-		//init_image(&vars);
-		// vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
-		// vars->mlx.addr = mlx_get_data_addr(vars->mlx.img, &vars->mlx.bits_per_pixel, &vars->mlx.line_length,
-		// 						&vars->mlx.endian);
-		// vars.mlx.img = mlx_new_image(vars.mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
-		// vars.mlx.addr = mlx_get_data_addr(vars.mlx.img, &vars.mlx.bits_per_pixel, &vars.mlx.line_length,
-		// 		&vars.mlx.endian);
 		display_fractal(&vars);
 		mlx_loop(vars.mlx.mlx);
 	}
