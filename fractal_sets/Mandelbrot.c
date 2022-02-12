@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 06:01:37 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/12 07:55:48 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/12 08:40:57 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,15 @@ void	mandelbrot(t_vars *vars)
 
 	vars->canvas.x = 0;
 	vars->canvas.y = 0;
-	double si = 0.5 * vars->canvas.zoom * WIN_HEIGHT;
-	double sr = 0.5 * vars->canvas.zoom * WIN_WIDTH;
-	double ww = WIN_WIDTH / 2;
-	double wh = WIN_HEIGHT / 2;
+	vars->canvas.r_factor = 0.5 * vars->canvas.zoom * WIN_WIDTH;
+	vars->canvas.i_factor = 0.5 * vars->canvas.zoom * WIN_HEIGHT;
 	while (vars->canvas.y++ < WIN_HEIGHT)
 	{
 		vars->canvas.x = 0;
 		while (vars->canvas.x++ < WIN_WIDTH)
 		{
-			c.r = -0.6 + (vars->canvas.x - ww) / (sr) + vars->canvas.pos_x;
-			c.i = 0.2 + (vars->canvas.y - wh) / (si) + vars->canvas.pos_y;
+			c.r = -0.6 + ((vars->canvas.x + vars->canvas.pos_x) - vars->canvas.ww_half) / (vars->canvas.r_factor);
+			c.i = 0.2 + ((vars->canvas.y + + vars->canvas.pos_y) - vars->canvas.wh_half) / (vars->canvas.i_factor);
 			z.r = 0;
 			z.i = 0;
 			iteration = 0;

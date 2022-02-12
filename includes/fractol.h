@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/12 08:10:07 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/12 08:19:45 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ typedef	struct s_fractal
 {
 	int				set;
 	int				max_iteration;
-	double			r_factor;
-	double			i_factor;
 	double			r_min;
 	double			r_max;
 	int				palette;
@@ -72,6 +70,10 @@ typedef	struct s_canvas
 	int y;
 	int	pos_x;
 	int pos_y;
+	double ww_half;
+	double wh_half;
+	double			r_factor;
+	double			i_factor;
 	double	zoom;
 }				t_canvas;
 

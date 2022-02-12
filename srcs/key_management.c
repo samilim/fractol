@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/12 08:06:29 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/12 08:45:31 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,17 @@ void zoom(int keycode, t_vars *vars)
 void move(int keycode, t_vars *vars)
 {
 	if (keycode == UP_KEY)
-		vars->canvas.pos_y += 0.5;
+		vars->canvas.pos_y -= 3.0;
 	if (keycode == DOWN_KEY)
-		vars->canvas.pos_y -= 0.5;
+		vars->canvas.pos_y += 3.0;
 	if (keycode == LEFT_KEY)
-		vars->canvas.pos_x += 0.5;
+		vars->canvas.pos_x -= 3.0;
 	if (keycode == RIGHT_KEY)
-		vars->canvas.pos_x -= 0.5;
+		vars->canvas.pos_x += 3.0;
 }
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	//printf("keycode = %d\n", keycode);
 	if (keycode == ESC_KEY)
     {
 		mlx_destroy_window(vars->mlx.mlx, vars->mlx.win);
@@ -94,6 +93,8 @@ int	mouse_hook(int keycode, int x, int y, t_vars *vars)
 		else
 			vars->fractal.set = 1;
 		vars->canvas.zoom = 1.0;
+		vars->canvas.pos_x = 0;
+		vars->canvas.pos_y = 0;
 		display_fractal(vars);
 	}
 	/*varier config Julia avec les mvmts de la souris*/
