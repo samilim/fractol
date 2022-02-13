@@ -6,14 +6,11 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 06:14:35 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 05:45:13 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 08:15:32 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include "../includes/keycodes.h"
-#include "../includes/colors.h"
-#include <math.h>
 
 static void	next_z(t_complex_nb *z, t_complex_nb *c)
 {
@@ -30,7 +27,6 @@ void	mandelbar(t_vars *vars)
 	t_complex_nb	c;
 	int				iteration;
 
-	printf("zoom = %f\n", vars->canvas.zoom);
 	while (vars->canvas.y++ < WIN_HEIGHT)
 	{
 		vars->canvas.x = 0;
@@ -48,7 +44,7 @@ void	mandelbar(t_vars *vars)
 				next_z(&z, &c);
 			if (iteration < (vars->fractal.max_iteration))
 				my_mlx_pixel_put(&vars->mlx, vars->canvas.x,
-					vars->canvas.y, get_color(vars, iteration) + iteration * 3000);
+					vars->canvas.y, get_color(vars, iteration));
 		}
 	}
 }
