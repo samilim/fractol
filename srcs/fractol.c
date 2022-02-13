@@ -6,15 +6,15 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/12 08:20:35 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 05:51:17 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 #include "../includes/keycodes.h"
 #include "../includes/colors.h"
-# include "../mlx_linux/mlx.h"
-# include <math.h>
+#include "../mlx_linux/mlx.h"
+#include <math.h>
 
 
 //comp home
@@ -50,17 +50,6 @@ int	valid_arg(char **argv, t_vars *vars)
 		if (vars->fractal.set != 2)
 			return (0);
 		argument = ft_atoi(argv[2]);
-		// if (ft_isfloat(argv[2]) == 1)
-		// {
-		// 	if (argv[3])
-		// 	{
-		// 		if (ft_isfloat(argv[3]) != 1)
-		// 			return(0);
-		// 	}
-		// }
-		// else
-		// 	return (0);
-		//printf("arg = %d\n", vars->fractal.arg);
 		if (argument > 0 && argument < 6)
 			vars->fractal.arg = argument;
 		else
@@ -76,24 +65,20 @@ int	print_help()
 	return (1);
 }
 
-void	init_complex(t_vars *vars)
-{
-	
-}
-
 void	init_datas(int argc, char **argv, t_vars *vars)
 {
 	vars->argc = argc;
 	vars->argv = argv;
-	vars->canvas.x = 0.0;
-	vars->canvas.y = 0.0;
 	vars->canvas.pos_x = 0;
 	vars->canvas.pos_y = 0;
-	vars->canvas.zoom = 1;
+	if (vars->fractal.set == 3)
+		vars->canvas.zoom = 0.55;
+	else
+		vars->canvas.zoom = 1;
 	vars->canvas.ww_half = WIN_WIDTH / 2;
 	vars->canvas.wh_half = WIN_HEIGHT / 2;
-	vars->fractal.max_iteration = 200;
-	vars->fractal.palette = 3;
+	vars->fractal.max_iteration = 50;
+	vars->fractal.palette = 1;
 	if (argc == 3)
 		vars->fractal.arg = ft_atoi(argv[2]);
 	else

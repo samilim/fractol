@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/12 08:19:45 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 04:41:00 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 //# include <mlx.h>
+//# include <mlx_int.h>
 # include <math.h>
 
 #include <string.h>
@@ -115,6 +116,7 @@ int		key_hook(int keycode, t_vars *vars);
 int		left_click(int keycode, int x, int y, t_vars *vars);
 int		mouse_hook(int keycode, int x, int y, t_vars *vars);
 void	display_fractal(t_vars *vars);
+int	mouse_exit_window(t_vars *vars);
 /*
 ** Fractal algorithms
 */

@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/12 07:42:01 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 04:52:54 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_image(t_vars *vars)
 {
 	mlx_put_image_to_window(vars->mlx.mlx, vars->mlx.win, vars->mlx.img, 0, 0);
 	mlx_mouse_hook(vars->mlx.win, mouse_hook, vars);
-	//mlx_hook(vars->mlx.win, 4, 1L<<2, left_click , vars);
+	mlx_hook(vars->mlx.win, 8, 1L<<5, mouse_exit_window, vars);
 	mlx_key_hook(vars->mlx.win, key_hook, vars);
 }
 
@@ -41,6 +41,10 @@ void	display_fractal(t_vars *vars)
 	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT+1, WIN_WIDTH+1);
 	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img, &vars->mlx.bits_per_pixel, &vars->mlx.line_length,
 			&vars->mlx.endian);
+	vars->canvas.x = 0.0;
+	vars->canvas.y = 0.0;
+	vars->canvas.r_factor = 0.5 * vars->canvas.zoom * WIN_WIDTH;
+	vars->canvas.i_factor = 0.5 * vars->canvas.zoom * WIN_HEIGHT;
 	if (vars->fractal.set == 1)
 		mandelbrot(vars);
 	else if (vars->fractal.set == 2)

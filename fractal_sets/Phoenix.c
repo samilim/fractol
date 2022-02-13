@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:36:33 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/10 10:25:42 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 03:33:45 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../includes/colors.h"
 #include <math.h>
 
-static void	next_z(t_complex_nb *z, t_complex_nb *c, t_complex_nb *t)
+static void	next_z(t_complex_nb *z, t_complex_nb *c)
 {
     double	nz;
 
@@ -30,20 +30,10 @@ static void	next_z(t_complex_nb *z, t_complex_nb *c, t_complex_nb *t)
     z->r = nz;
 }
 
-static double	magnitude(t_complex_nb *complex)
-{
-	double	sq;
-
-	sq = sqrt((complex->r * complex->r)
-			+ (complex->i * complex->i));
-	return (sq);
-}
-
 void	phoenix(t_vars *vars)
 {
 	t_complex_nb	z;
 	t_complex_nb	c;
-    t_complex_nb    t;
 
 	int				iteration;
 
@@ -61,7 +51,7 @@ void	phoenix(t_vars *vars)
 			iteration = 0;
 			while ((iteration++ < (vars->fractal.max_iteration))
 				&& ((z.r * z.r + z.i * z.i) <= 4.0))
-				next_z(&z, &c, &t);
+				next_z(&z, &c);
 			if (iteration < (vars->fractal.max_iteration))
 				my_mlx_pixel_put(&vars->mlx, vars->canvas.x,
 					vars->canvas.y, get_color(vars, iteration));
