@@ -6,31 +6,21 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 07:59:12 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 08:32:15 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include "../includes/keycodes.h"
-#include "../includes/colors.h"
-# include "../mlx_linux/mlx.h"
-#include <unistd.h>
 
-void zoom(int keycode, t_vars *vars)
+void	zoom(int keycode, t_vars *vars)
 {
-    if (keycode == 4)
-    {
-        //zoom
+	if (keycode == 4)
 		vars->canvas.zoom *= 1.050;
-    }
-    else
-    {
-        //dezoom
+	else
 		vars->canvas.zoom /= 1.050;
-    }
 }
 
-void move(int keycode, t_vars *vars)
+void	move(int keycode, t_vars *vars)
 {
 	if (keycode == UP_KEY)
 		vars->canvas.pos_y -= 10.0;
@@ -45,10 +35,10 @@ void move(int keycode, t_vars *vars)
 int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == ESC_KEY)
-    {
+	{
 		mlx_destroy_window(vars->mlx.mlx, vars->mlx.win);
-        exit(EXIT_SUCCESS);
-    }
+		exit(EXIT_SUCCESS);
+	}
 	if (keycode == SPACE_KEY)
 	{
 		if (vars->fractal.palette != 7)
@@ -57,7 +47,8 @@ int	key_hook(int keycode, t_vars *vars)
 			vars->fractal.palette = 1;
 		display_fractal(vars);
 	}
-	else if (keycode == UP_KEY || keycode == DOWN_KEY || keycode == LEFT_KEY || keycode == RIGHT_KEY)
+	else if (keycode == UP_KEY || keycode == DOWN_KEY
+		|| keycode == LEFT_KEY || keycode == RIGHT_KEY)
 	{
 		move(keycode, vars);
 		display_fractal(vars);
@@ -67,9 +58,9 @@ int	key_hook(int keycode, t_vars *vars)
 
 int	mouse_hook(int keycode, int x, int y, t_vars *vars)
 {
-	if ((x && y ) && (keycode == SCROLLDOWN_KEY || keycode == SCROLLUP_KEY))
+	if ((x && y) && (keycode == SCROLLDOWN_KEY || keycode == SCROLLUP_KEY))
 	{
-        zoom(keycode, vars);
+		zoom(keycode, vars);
 		display_fractal(vars);
 	}
 	else if (keycode == LEFT_CLICK)
@@ -93,5 +84,5 @@ int	mouse_exit_window(t_vars *vars)
 	else
 		vars->fractal.arg = 1;
 	display_fractal(vars);
-	return(0);
+	return (0);
 }

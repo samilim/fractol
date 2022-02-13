@@ -89,3 +89,5 @@ https://stackoverflow.com/questions/8172979/is-it-a-must-to-reverse-byte-order-w
 
 ### Colors
 8, 10 and 12 bits
+
+//gcc -Wno-unused-function -Wno-unused-variable -Wno-unused-parameter libft/*.c fractal_sets/*.c srcs/*.c -lbsd -lmlx -Lmlx_linux -lXext -lX11 -lm && ./a.out Mandelbrot

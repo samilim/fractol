@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 08:21:36 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 08:28:26 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ void	init_image(t_vars *vars)
 void	init_window(t_vars *vars)
 {
 	vars->mlx.mlx = mlx_init();
-    vars->mlx.win = mlx_new_window(vars->mlx.mlx, WIN_HEIGHT+1, WIN_WIDTH+1, "Fractol");
+	vars->mlx.win = mlx_new_window(vars->mlx.mlx,
+			WIN_HEIGHT + 1, WIN_WIDTH + 1, "Fractol");
 }
 
 void	display_fractal(t_vars *vars)
 {
-	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT+1, WIN_WIDTH+1);
+	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT + 1, WIN_WIDTH + 1);
 	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img,
-		&vars->mlx.bits_per_pixel, &vars->mlx.line_length, &vars->mlx.endian);
+			&vars->mlx.bits_per_pixel,
+			&vars->mlx.line_length, &vars->mlx.endian);
 	vars->canvas.x = 0.0;
 	vars->canvas.y = 0.0;
 	vars->canvas.r_factor = 0.5 * vars->canvas.zoom * WIN_WIDTH;
@@ -48,9 +50,9 @@ void	display_fractal(t_vars *vars)
 	else if (vars->fractal.set == 2)
 		julia(vars);
 	else if (vars->fractal.set == 3)
-	 	mandelbar(vars);
+		mandelbar(vars);
 	else if (vars->fractal.set == 4)
-	 	burning_ship(vars);
+		burning_ship(vars);
 	mlx_clear_window(vars->mlx.mlx, vars->mlx.win);
 	init_image(vars);
 }
