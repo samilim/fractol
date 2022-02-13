@@ -6,32 +6,26 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 07:37:43 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 05:50:44 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 08:16:57 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int     get_color(t_vars *vars, int iteration)
+int	get_color(t_vars *vars, int iteration)
 {
 	if (vars->fractal.palette == 1)
-		return (SEA_GREEN);
+		return (BLACK + iteration * iteration);
 	else if (vars->fractal.palette == 2)
-		return (RED);
+		return (RED + iteration * 3000);
 	else if (vars->fractal.palette == 3)
-		return (PURPLE);
+		return (PURPLE + iteration * 3000);
 	else if (vars->fractal.palette == 4)
-		return (PURPLE);
+		return (WHITE * iteration * 2000);
 	else if (vars->fractal.palette == 5)
-		return (PURPLE);
+		return (SEA_GREEN + iteration * 3000);
 	else if (vars->fractal.palette == 6)
-		return (PURPLE);
-	else if (vars->fractal.palette == 7)
-		return (PURPLE);
-	else if (vars->fractal.palette == 8)
-		return (PURPLE);
-	else if (vars->fractal.palette == 9)
-		return (PURPLE);
+		return (ORANGE + iteration * 1000);
 	else
-		return (WHITE);
+		return (LAVENDER * iteration * 100);
 }

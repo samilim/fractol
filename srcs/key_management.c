@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 03:34:29 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/13 07:59:12 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	key_hook(int keycode, t_vars *vars)
     }
 	if (keycode == SPACE_KEY)
 	{
-		if (vars->fractal.palette != 3)
+		if (vars->fractal.palette != 7)
 			vars->fractal.palette++;
 		else
 			vars->fractal.palette = 1;
@@ -78,7 +78,7 @@ int	mouse_hook(int keycode, int x, int y, t_vars *vars)
 			vars->fractal.set++;
 		else
 			vars->fractal.set = 1;
-		vars->canvas.zoom = 1.0;
+		vars->canvas.zoom = 0.64;
 		vars->canvas.pos_x = 0;
 		vars->canvas.pos_y = 0;
 		display_fractal(vars);
