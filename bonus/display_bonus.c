@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 09:04:08 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 05:32:32 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,43 @@ void	init_image(t_vars *vars)
 	mlx_key_hook(vars->mlx.win, key_hook, vars);
 }
 
-void	init_window(t_vars *vars)
+int	init_window(t_vars *vars)
 {
 	vars->mlx.mlx = mlx_init();
+	if (!vars->mlx.mlx)
+	{
+		write(1, "Mlx failed to initiate\n", 24);
+		return (-1);
+	}
 	vars->mlx.win = mlx_new_window(vars->mlx.mlx,
 			WIN_HEIGHT + 1, WIN_WIDTH + 1, "Fractol");
+	if (!vars->mlx.win)
+	{
+		write(1, "Mlx failed to create window\n", 29);
+		return (-1);
+	}
+	return (0);
+}
+
+void	create_image(t_vars *vars)
+{
+	if (vars->mlx.img != NULL)
+		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
+	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT + 1, WIN_WIDTH + 1);
+	if (vars->mlx.img == NULL)
+	{
+		write(1, "Mlx failed to create a new image\n", 34);
+		mlx_destroy_window(vars->mlx.mlx, vars->mlx.win);
+		exit(EXIT_SUCCESS);
+	}
+	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img,
+			&vars->mlx.bits_per_pixel,
+			&vars->mlx.line_length, &vars->mlx.endian);
 }
 
 void	display_fractal(t_vars *vars)
 {
-	vars->mlx.img = mlx_new_image(vars->mlx.mlx, WIN_HEIGHT + 1, WIN_WIDTH + 1);
-	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img,
-			&vars->mlx.bits_per_pixel,
-			&vars->mlx.line_length, &vars->mlx.endian);
+	create_image(vars);
 	vars->canvas.x = 0.0;
 	vars->canvas.y = 0.0;
 	vars->canvas.r_factor = 0.5 * vars->canvas.zoom * WIN_WIDTH;

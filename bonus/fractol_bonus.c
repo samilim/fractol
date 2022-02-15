@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 09:04:06 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 05:33:50 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	valid_arg(char **argv, t_vars *vars)
 
 void	init_datas(int argc, char **argv, t_vars *vars)
 {
+	vars->mlx.img = NULL;
 	vars->argc = argc;
 	vars->argv = argv;
 	vars->canvas.pos_x = 0;
@@ -92,7 +93,8 @@ int	main(int argc, char **argv)
 	{
 		print_help();
 		init_datas(argc, argv, &vars);
-		init_window(&vars);
+		if (init_window(&vars) == -1)
+			exit (EXIT_FAILURE);
 		display_fractal(&vars);
 		mlx_loop(vars.mlx.mlx);
 	}

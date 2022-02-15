@@ -50,7 +50,6 @@ SRCS 		= ft_bzero.c \
 			ft_lstiter.c \
 			ft_lstmap.c
 
-SRCS_PATH	= srcs/
 OBJS		= $(SRCS:.c=.o)
 
 all:		$(NAME)

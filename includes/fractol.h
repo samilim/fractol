@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:36 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 08:15:19 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 05:37:10 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdio.h>
 # include <math.h>
 # include <string.h>
-//# include <mlx.h>
-//# include <mlx_int.h>
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
@@ -106,7 +104,7 @@ typedef struct s_vars
 }				t_vars;
 
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-void	init_window(t_vars *vars);
+int		init_window(t_vars *vars);
 void	init_image(t_vars *vars);
 int		get_color(t_vars *vars, int iteration);
 int		key_hook(int keycode, t_vars *vars);

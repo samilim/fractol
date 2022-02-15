@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/13 08:32:15 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 05:05:55 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == ESC_KEY)
 	{
+		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
 		mlx_destroy_window(vars->mlx.mlx, vars->mlx.win);
 		exit(EXIT_SUCCESS);
 	}
