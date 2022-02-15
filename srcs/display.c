@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 06:07:17 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/15 05:21:04 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 21:59:42 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	init_window(t_vars *vars)
 	if (!vars->mlx.win)
 	{
 		write(1, "Mlx failed to create window\n", 29);
+		mlx_destroy_display(vars->mlx.mlx);
+		free(vars->mlx.mlx);
 		return (-1);
 	}
 	return (0);
@@ -55,6 +57,8 @@ void	create_image(t_vars *vars)
 	{
 		write(1, "Mlx failed to create a new image\n", 34);
 		mlx_destroy_window(vars->mlx.mlx, vars->mlx.win);
+		mlx_destroy_display(vars->mlx.mlx);
+		free(vars->mlx.mlx);
 		exit(EXIT_SUCCESS);
 	}
 	vars->mlx.addr = mlx_get_data_addr(vars->mlx.img,

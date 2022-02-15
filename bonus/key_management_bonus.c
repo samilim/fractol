@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:12 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/15 05:33:14 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 22:02:45 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	move(int keycode, t_vars *vars)
 {
 	if (keycode == UP_KEY)
 		vars->canvas.pos_y -= 10.0;
-	if (keycode == DOWN_KEY)
+	else if (keycode == DOWN_KEY)
 		vars->canvas.pos_y += 10.0;
-	if (keycode == LEFT_KEY)
+	else if (keycode == LEFT_KEY)
 		vars->canvas.pos_x -= 10.0;
-	if (keycode == RIGHT_KEY)
+	else if (keycode == RIGHT_KEY)
 		vars->canvas.pos_x += 10.0;
 }
 
@@ -38,6 +38,8 @@ int	key_hook(int keycode, t_vars *vars)
 	{
 		mlx_destroy_image(vars->mlx.mlx, vars->mlx.img);
 		mlx_destroy_window(vars->mlx.mlx, vars->mlx.win);
+		mlx_destroy_display(vars->mlx.mlx);
+		free(vars->mlx.mlx);
 		exit(EXIT_SUCCESS);
 	}
 	if (keycode == SPACE_KEY)

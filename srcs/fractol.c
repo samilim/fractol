@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/15 05:20:12 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 22:12:52 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	init_set(int argc, t_vars *vars, char **argv)
 {
-	if (argc < 2)
+	if (argc < 2 || argc > 3)
 		return (-1);
 	if (ft_strcmp(argv[1], "Mandelbrot") == 0)
 		return (vars->fractal.set = 1);
@@ -67,14 +67,14 @@ void	init_datas(int argc, char **argv, t_vars *vars)
 
 void	print_help(void)
 {
-	printf("\n===KEYS===\n");
-	printf("[Esc] to exit\n");
-	printf("[Space] to change palette\n");
-	printf("[Arrows] to move\n");
-	printf("[Mouse wheel] to zoom in and out\n");
-	printf("[Left click] to change fractal\n");
-	printf("[Move the mouse cursor out of the window]");
-	printf(" to change the Julia's set pattern\n==========\n\n");
+	write(1, "\n===KEYS===\n", 13);
+	write(1, "[Esc] to exit\n", 15);
+	write(1, "[Space] to change palette\n", 27);
+	write(1, "[Arrows] to move\n", 18);
+	write(1, "[Mouse wheel] to zoom in and out\n", 34);
+	write(1, "[Left click] to change fractal\n", 32);
+	write(1, "[Move the mouse cursor out of the window]", 42);
+	write(1, " to change the Julia's set pattern\n==========\n\n", 48);
 }
 
 int	main(int argc, char **argv)
@@ -83,10 +83,10 @@ int	main(int argc, char **argv)
 
 	if (init_set(argc, &vars, argv) == -1 || valid_arg(argv, &vars) == 0)
 	{
-		printf("Invalid parameter.\n");
-		printf("Please use one of those parameters :\n Mandelbrot\n Mandelbar\n");
-		printf(" Burning Ship\n ");
-		printf(" Julia (+ an parameter between 1 and 5 to change pattern)\n");
+		write(1, "Invalid parameter.\n", 20);
+		write(1, "Please use one of those parameters :\n Mandelbrot\n Mandelbar\n", 61);
+		write(1, " Burning Ship\n ", 16);
+		write(1, " Julia (+ an parameter between 1 and 5 to change pattern)\n", 59);
 		return (-1);
 	}
 	else
