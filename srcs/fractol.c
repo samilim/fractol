@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/15 22:12:52 by salimon          ###   ########.fr       */
+/*   Updated: 2022/02/15 22:58:22 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,11 @@ int	main(int argc, char **argv)
 	if (init_set(argc, &vars, argv) == -1 || valid_arg(argv, &vars) == 0)
 	{
 		write(1, "Invalid parameter.\n", 20);
-		write(1, "Please use one of those parameters :\n Mandelbrot\n Mandelbar\n", 61);
+		write(1, "Please use one of those parameters ", 36);
+		write(1, ":\n Mandelbrot\n Mandelbar\n", 26);
 		write(1, " Burning Ship\n ", 16);
-		write(1, " Julia (+ an parameter between 1 and 5 to change pattern)\n", 59);
+		write(1, " Julia (+ an parameter between 1 ", 34);
+		write(1, "and 5 to change pattern)\n", 26);
 		return (-1);
 	}
 	else
