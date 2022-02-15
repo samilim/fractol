@@ -1,39 +1,58 @@
 NAME		= fractol
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
-MLXFLAGS	= -lbsd -lmlx -Lmlx_linux -lXext -lX11 -lm
+CFLAGS		= -Wall -Wextra -Werror -g
+#MLXFLAGS	= -lbsd -lmlx -Lmlx_linux -lXext -lX11 -lm
 AR 			= ar rcs
 RM			= rm -f
-IFLAGS		= include/fractol.h includes/keycodes.h mlx_linux/mlx.h mlx_linux/mlx_int.h
+# directories
+INC_PATH	:= includes
 SRCS_PATH	:= srcs
 BONUS_PATH	:= bonus
-LIBFT_PATH	:= libft
-MLX_PATH	:= mlx_linux
 
-SRCS 		:= $(wildcard $(SRCS_PATH)/*.c $(MLX_PATH)/*.c fractal_sets/*.c)
-SRCS_BONUS	:= $(wildcard $(BONUS_PATH)/*.c $(MLX_PATH)/*.c fractal_sets/*.c)
-LIBFT		:= $(wildcard $(LIBFT_PATH)/*.c)
+SRCS 		:= $(wildcard $(SRCS_PATH)/*.c fractal_sets/*.c)
+SRCS_BONUS	:= $(wildcard $(BONUS_PATH)/*.c)
+
+# mlx
+MLX_PATH	:= mlx_linux/
+MLX_LIB		= $(addprefix $(MLX_PATH),libmlx_Linux.a)
+MLX_INC		= -I $(MLX_PATH)
+MLX_LNK		:= -L $(MLX_PATH) -l mlx -lXext -lX11
+
+# libft
+LIBFT_PATH	:= libft/
+LIBFT_LIB	= $(addprefix $(LIBFT_PATH),libft.a)
+LIBFT_INC	= -I ./libft
+LIBFT_LNK	= -L ./libft -l ft -l pthread
+
 
 OBJS		= $(SRCS:.c=.o)
 OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
-LIB_OBJS	= $(LIBFT:.c=.o)
 
-all:		$(NAME)
+all:		$(LIBFT_LIB) $(MLX_LIB) $(NAME)
 
-$(NAME):	$(OBJS) $(LIB_OBJS)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_OBJS)
+%.o: %.c	$(SRCS_PATH)/%.c
+			$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) -I $(INC_PATH) -o $@ -c $<
 
-%.o: %.c	$(SRCS_PATH)/%.c $(LIBFT_PATH)/%.c
-			$(CC) $(CFLAGS) $(IFLAGS) $(MLXFLAGS) -o $@ -c $<
+$(LIBFT_LIB):
+	@make -C $(LIBFT_PATH)
 
-bonus:		$(OBJS_BONUS) $(LIB_OBJS)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS_BONUS) $(LIB_OBJS)
+$(MLX_LIB):
+	@make -C $(MLX_PATH)
+
+$(NAME):	$(OBJS)
+			$(CC) $(OBJS) $(MLX_LNK) $(LIBFT_LNK) -lm -o $(NAME)
+
+bonus:		$(LIBFT_LIB) $(MLX_LIB) $(OBJS_BONUS)
+			$(CC) $(OBJS_BONUS) $(LIBFT_LNK) $(MLX_LNK) -lm -o $(NAME)
 
 clean:
 			$(RM) $(OBJS) $(OBJS_BONUS) $(LIB_OBJS)
+			make -C $(LIBFT_PATH) clean
+			make -C $(MLX_PATH) clean
 
 fclean:		clean
 			$(RM) $(NAME)
+			make -C $(LIBFT_PATH) fclean
 
 re:			fclean all
 
