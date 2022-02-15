@@ -1,7 +1,6 @@
 NAME		= fractol
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g
-#MLXFLAGS	= -lbsd -lmlx -Lmlx_linux -lXext -lX11 -lm
+CFLAGS		= -Wall -Wextra -Werror
 AR 			= ar rcs
 RM			= rm -f
 # directories
@@ -23,7 +22,6 @@ LIBFT_PATH	:= libft/
 LIBFT_LIB	= $(addprefix $(LIBFT_PATH),libft.a)
 LIBFT_INC	= -I ./libft
 LIBFT_LNK	= -L ./libft -l ft -l pthread
-
 
 OBJS		= $(SRCS:.c=.o)
 OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
