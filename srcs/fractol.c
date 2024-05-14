@@ -6,7 +6,7 @@
 /*   By: salimon <salimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:54:49 by salimon           #+#    #+#             */
-/*   Updated: 2022/02/15 22:58:22 by salimon          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:59:28 by salimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void	print_help(void)
 {
 	write(1, "\n===KEYS===\n", 13);
 	write(1, "[Esc] to exit\n", 15);
-	write(1, "[Space] to change palette\n", 27);
+	write(1, "[Space] to change the color palette\n", 27);
 	write(1, "[Arrows] to move\n", 18);
 	write(1, "[Mouse wheel] to zoom in and out\n", 34);
 	write(1, "[Left click] to change fractal\n", 32);
-	write(1, "[Move the mouse cursor out of the window]", 42);
+	write(1, "[Move the mouse cursor outside the window]", 42);
 	write(1, " to change the Julia's set pattern\n==========\n\n", 48);
 }
 
